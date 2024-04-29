@@ -10,6 +10,7 @@ public class CalculatorView extends JFrame {
     private JTextField jtfResult, jtfPreviousOperation;
 
     public CalculatorView() {
+    	
         this.setSize(400, 400);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,8 +66,8 @@ public class CalculatorView extends JFrame {
         // Memory functions
         jbMemoryAdd = new JButton("M+");
         jbMemorySubtract = new JButton("M-");
-        jbMemoryRecall = new JButton("M-Recall");
-        jbMemoryClear = new JButton("M-Clear");
+        jbMemoryRecall = new JButton("MR");
+        jbMemoryClear = new JButton("MC");
 
         // Delete
         jbDelete = new JButton("Del");
@@ -189,8 +190,6 @@ public class CalculatorView extends JFrame {
         jb7.addActionListener(listenForCalc);
         jb8.addActionListener(listenForCalc);
         jb9.addActionListener(listenForCalc);
-        jbClear.addActionListener(listenForCalc);
-        jbDelete.addActionListener(listenForCalc);
     }
 
     public void addOperationListener (ActionListener listenForOperation) {
@@ -205,5 +204,7 @@ public class CalculatorView extends JFrame {
         jbMemorySubtract.addActionListener(listenForOperation);
         jbMemoryRecall.addActionListener(listenForOperation);
         jbMemoryClear.addActionListener(listenForOperation);
+        jbClear.addActionListener(listenForOperation);
+        jbDelete.addActionListener(listenForOperation);
     }
 }

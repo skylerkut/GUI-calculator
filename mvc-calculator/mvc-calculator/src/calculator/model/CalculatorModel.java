@@ -52,6 +52,11 @@ public class CalculatorModel implements Subject {
                 }else {
                 result = Math.sqrt(this.getNumber());}
                 break;
+            case "C": 
+            	result = 0.0;
+            case "Del": 
+            	result = this.getPreviousNumber();
+            
         }
         return result;
     }

@@ -24,24 +24,12 @@ public class CalculatorController implements Observer {
     }
 
     private class CalculateListener implements ActionListener {
+    	@Override
         public void actionPerformed (ActionEvent e) {
             int numberUserPressed = Integer.parseInt(((JButton)e.getSource()).getText());
             model.addDigit(numberUserPressed);
         }
     }
-    
-//    private class CalculateListener implements ActionListener {
-//        public void actionPerformed(ActionEvent e) {
-//            String input = ((JButton)e.getSource()).getText();
-//            if (input.equals(".")) {
-//                if (!view.getResult().contains(".")) {
-//                    view.setResult(view.getResult() + input);
-//                }
-//            } else {
-//                view.setResult(view.getResult() + input);
-//            }
-//        }
-//    }
 
     private class OperationListener implements ActionListener {
         @Override
