@@ -19,25 +19,28 @@ public class CalculatorController implements Observer {
         this.model = model;
 
         this.view.addCalculationListener(new CalculateListener());
-        this.view.addOperationListener(new OperationListener());
+        this.view.addOperationListener(new EqualsListener());
         this.model.registerObserver(this);
     }
 
     private class CalculateListener implements ActionListener {
     	@Override
         public void actionPerformed (ActionEvent e) {
-            int numberUserPressed = Integer.parseInt(((JButton)e.getSource()).getText());
-            model.addDigit(numberUserPressed);
+            String numberUserPressed = ((JButton)e.getSource()).getText();
+            model.addToExpression(numberUserPressed);
+            view.setResult(numberUserPressed);
+            
         }
     }
 
-    private class OperationListener implements ActionListener {
+    //Change to equals listener to end the string?
+    private class EqualsListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             String operationPressed = ((JButton)e.getSource()).getText();
 
             if (Objects.equals(operationPressed, "=")) {
-                model.setNumber(model.makeOperation());
+                model.evaluateExpression();
             } else {
                 model.setCurrentTypeOfOperation(operationPressed);
                 model.setPreviousNumber(model.getNumber());
@@ -48,7 +51,8 @@ public class CalculatorController implements Observer {
 
     @Override
     public void update() {
-        view.setNumber(model.getNumber());
-        view.setPreviousNumber(model.getPreviousNumber(), model.getCurrentTypeOfOperation());
+        //view.setNumber(model.getNumber());
+        //view.setPreviousNumber(model.getPreviousNumber(), model.getCurrentTypeOfOperation());
+        view.setNumber(0);
     }
 }

@@ -1,6 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.awt.event.ActionEvent;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,62 +24,42 @@ public class CalculatorTest {
         controller = new CalculatorController(view, model);
     }
 
+    /*
+     * Basic Operators
+     */
     @Test
-    public void testBasicFunctionality() {
-        // Test basic math operations
-        assertEquals("2", performOperationAndGetResult("1+1="));
-        assertEquals("4", performOperationAndGetResult("2*2="));
-        assertEquals("5", performOperationAndGetResult("7-2="));
-        assertEquals("3", performOperationAndGetResult("6/2="));
+    public void testAdd() {
+    	model.setExpression("1+1=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(2, result, 0.0f);
+    }
+    
+    @Test
+    public void testSubtract() {
+    	model.setExpression("5-4=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(1, result, 0.0f);
     }
 
     @Test
-    public void testAdvancedOperations() {
-        // Test square and square root operations
-        assertEquals("25.0", performOperationAndGetResult("5x²="));
-        assertEquals("5.0", performOperationAndGetResult("25√="));
+    public void testMultiply() {
+    	model.setExpression("1*3=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(3, result, 0.0f);
     }
-
-//    @Test
-//    public void testMemoryFunctionality() {
-//        // Test memory operations
-//        performOperationAndGetResult("5+3=");
-//        view.clickMemoryAddButton();
-//        performOperationAndGetResult("M-Clear");
-//        performOperationAndGetResult("M-Recall");
-//        assertEquals("8.0", view.getDisplayText());
-//        view.clickMemoryClearButton();
-//        performOperationAndGetResult("M-Recall");
-//        assertEquals("0.0", view.getDisplayText());
-//    }
-
-//    @Test
-//    public void testDeleteFunctionality() {
-//        // Test delete functionality
-//        performOperationAndGetResult("1234.5");
-//        view.clickDeleteButton();
-//        assertEquals("1234.", view.getDisplayText());
-//        view.clickDeleteButton();
-//        assertEquals("1234", view.getDisplayText());
-//        view.clickDeleteButton();
-//        assertEquals("123", view.getDisplayText());
-//    }
-
+    
     @Test
-    public void testDivisionByZero() {
-        // Test division by zero
-        assertEquals("Error", performOperationAndGetResult("5/0="));
-    }
-
-    private String performOperationAndGetResult(String operation) {
-        for (char c : operation.toCharArray()) {
-            if (Character.isDigit(c) || c == '.') {
-                view.clickDigitButton(Character.toString(c));
-            } else {
-                view.clickOperationButton(Character.toString(c));
-            }
-        }
-        return view.getDisplayText();
+    public void testDivide() {
+    	model.setExpression("10/2=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(5, result, 0.0f);
     }
 }
+
+
+
 

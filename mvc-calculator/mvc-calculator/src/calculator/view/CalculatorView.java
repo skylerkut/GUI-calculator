@@ -190,21 +190,21 @@ public class CalculatorView extends JFrame {
         jb7.addActionListener(listenForCalc);
         jb8.addActionListener(listenForCalc);
         jb9.addActionListener(listenForCalc);
+        jbAdd.addActionListener(listenForCalc);
+        jbSubstract.addActionListener(listenForCalc);
+        jbMultiply.addActionListener(listenForCalc);
+        jbDivide.addActionListener(listenForCalc);
+        jbSquare.addActionListener(listenForCalc);
+        jbSquareRoot.addActionListener(listenForCalc);
     }
 
     public void addOperationListener (ActionListener listenForOperation) {
         jbEqual.addActionListener(listenForOperation);
-        jbAdd.addActionListener(listenForOperation);
-        jbSubstract.addActionListener(listenForOperation);
-        jbMultiply.addActionListener(listenForOperation);
-        jbDivide.addActionListener(listenForOperation);
-        jbSquare.addActionListener(listenForOperation);
-        jbSquareRoot.addActionListener(listenForOperation);
-        jbMemoryAdd.addActionListener(listenForOperation);
-        jbMemorySubtract.addActionListener(listenForOperation);
         jbMemoryRecall.addActionListener(listenForOperation);
         jbMemoryClear.addActionListener(listenForOperation);
         jbClear.addActionListener(listenForOperation);
         jbDelete.addActionListener(listenForOperation);
+        jbMemoryAdd.addActionListener(listenForOperation);
+        jbMemorySubtract.addActionListener(listenForOperation);
     }
 }
