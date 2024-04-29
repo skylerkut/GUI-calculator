@@ -36,13 +36,19 @@ public class CalculatorModel implements Subject {
                 result = this.getPreviousNumber() * this.getNumber();
                 break;
             case "/":
-                result = this.getPreviousNumber() / this.getNumber();
+                if (this.getNumber() == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }else {
+                result = this.getPreviousNumber() / this.getNumber();}
                 break;
             case "x²":
                 result = Math.pow(this.getNumber(), 2);
                 break;
             case "√":
-                result = Math.sqrt(this.getNumber());
+            	if (this.getNumber() < 0) {
+                    throw new ArithmeticException("Square root of negative number");
+                }else {
+                result = Math.sqrt(this.getNumber());}
                 break;
         }
         return result;
@@ -72,6 +78,7 @@ public class CalculatorModel implements Subject {
     public void setPreviousNumber(double previousNumber) {
         this.previousNumber = previousNumber;
     }
+    
 
     @Override
     public void registerObserver (Observer o) {
