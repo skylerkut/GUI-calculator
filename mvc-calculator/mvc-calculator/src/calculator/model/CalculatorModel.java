@@ -11,12 +11,14 @@ public class CalculatorModel implements Subject {
     private double number;
     private double previousNumber;
     private String currentTypeOfOperation;
+    private double memory;
 
     public CalculatorModel () {
         observers = new ArrayList<>();
         number = 0;
         previousNumber = 0;
         currentTypeOfOperation = "";
+        memory = 0;
     }
 
     public void addDigit (float digit) {
@@ -79,6 +81,22 @@ public class CalculatorModel implements Subject {
         this.previousNumber = previousNumber;
     }
     
+    public void addToMemory(double value) {
+        memory += value;
+    }
+
+    public void subtractFromMemory(double value) {
+        memory -= value;
+    }
+
+    public double recallMemory() {
+        return memory;
+    }
+
+    public void clearMemory() {
+        memory = 0;
+    }
+
 
     @Override
     public void registerObserver (Observer o) {
