@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class CalculatorView extends JFrame {
     private JButton jb1, jb2, jb3, jb4, jb5, jb6, jb7, jb8, jb9, jb0, jbClear, jbAdd, jbSubstract, jbMultiply, jbDivide, jbEqual, jbSquare,
     jbSquareRoot, jbMemoryAdd, jbMemorySubtract, jbMemoryRecall, jbMemoryClear, jbDelete;
-    private JTextField jtfResult, jtfPreviousOperation;
+    private JTextField jtfResult, jftCurrentExpressionTxt;
 
     public CalculatorView() {
     	
@@ -72,9 +72,9 @@ public class CalculatorView extends JFrame {
         // Delete
         jbDelete = new JButton("Del");
 
-        jtfPreviousOperation = new JTextField(10);
-        jtfPreviousOperation.setFont(font);
-        jtfPreviousOperation.setHorizontalAlignment(JTextField.RIGHT);
+        jftCurrentExpressionTxt = new JTextField(10);
+        jftCurrentExpressionTxt.setFont(font);
+        jftCurrentExpressionTxt.setHorizontalAlignment(JTextField.RIGHT);
         jtfResult = new JTextField(10);
         jtfResult.setHorizontalAlignment(JTextField.RIGHT);
         jtfResult.setFont(font);
@@ -83,7 +83,7 @@ public class CalculatorView extends JFrame {
         JPanel jpResults = new JPanel();
         jpResults.setLayout(new BorderLayout());
 
-        jpResults.add(jtfPreviousOperation, BorderLayout.NORTH);
+        jpResults.add(jftCurrentExpressionTxt, BorderLayout.NORTH);
         jpResults.add(jtfResult, BorderLayout.CENTER);
 
         gridConstraints.gridx = 1;
@@ -162,21 +162,27 @@ public class CalculatorView extends JFrame {
         this.add(jpMain);
         this.setVisible(true);
     }
+    
+	public String getCurrentExpressionTxt() {
+		return jftCurrentExpressionTxt.getText();
+	}
 
-    public String getResult() {
+	public void setCurrentExpressionTxt(String currentExpression) {
+		this.jftCurrentExpressionTxt.setText(currentExpression);
+	}
+	
+	public void addToCurrExpression(String addInput) {
+		String addOn = "";
+		addOn = getCurrentExpressionTxt() + addInput;
+		setCurrentExpressionTxt(addOn);
+	}
+
+	public String getResult() {
         return jtfResult.getText();
     }
 
     public void setResult(String result) {
         jtfResult.setText(result);
-    }
-    
-    public void setNumber (double number) {
-        jtfResult.setText(Double.toString(number));
-    }
-
-    public void setPreviousNumber(double previousNumber, String operation) {
-        jtfPreviousOperation.setText(Double.toString(previousNumber) + " " + operation);
     }
 
     public void addCalculationListener (ActionListener listenForCalc) {

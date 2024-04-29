@@ -28,8 +28,12 @@ public class CalculatorController implements Observer {
         public void actionPerformed (ActionEvent e) {
             String numberUserPressed = ((JButton)e.getSource()).getText();
             model.addToExpression(numberUserPressed);
-            view.setResult(numberUserPressed);
             
+            //Move current number up
+            String moveNum = view.getResult();
+            view.addToCurrExpression(moveNum);
+            //Display button pressed
+            view.setResult(numberUserPressed);           
         }
     }
 
@@ -40,7 +44,8 @@ public class CalculatorController implements Observer {
             String operationPressed = ((JButton)e.getSource()).getText();
 
             if (Objects.equals(operationPressed, "=")) {
-                model.evaluateExpression();
+               double result = model.evaluateExpression();
+               
             } else {
                 model.setCurrentTypeOfOperation(operationPressed);
                 model.setPreviousNumber(model.getNumber());
@@ -51,8 +56,5 @@ public class CalculatorController implements Observer {
 
     @Override
     public void update() {
-        //view.setNumber(model.getNumber());
-        //view.setPreviousNumber(model.getPreviousNumber(), model.getCurrentTypeOfOperation());
-        view.setNumber(0);
     }
 }

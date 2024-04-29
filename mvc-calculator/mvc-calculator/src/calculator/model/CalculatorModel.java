@@ -62,13 +62,13 @@ public class CalculatorModel implements Subject {
 
 	// Helper Methods for evaluateExpression()
 	private static boolean isOperator(char c) {
-		return c == '+' || c == '-' || c == '*' || c == '/';
+		return c == '+' || c == '-' || c == 'x' || c == '/';
 	}
 
 	private static int precedence(char operator) {
 		if (operator == '+' || operator == '-')
 			return 1;
-		else if (operator == '*' || operator == '/')
+		else if (operator == 'x' || operator == '/')
 			return 2;
 		else
 			return 0;
@@ -80,7 +80,7 @@ public class CalculatorModel implements Subject {
 			return num1 + num2;
 		case '-':
 			return num1 - num2;
-		case '*':
+		case 'x':
 			return num1 * num2;
 		case '/':
 			if (num2 == 0)
