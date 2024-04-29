@@ -38,6 +38,12 @@ public class CalculatorModel implements Subject {
             case "/":
                 result = this.getPreviousNumber() / this.getNumber();
                 break;
+            case "x²":
+                result = Math.pow(this.getNumber(), 2);
+                break;
+            case "√":
+                result = Math.sqrt(this.getNumber());
+                break;
         }
         return result;
     }

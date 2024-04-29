@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CalculatorView extends JFrame {
-    private JButton jb1, jb2, jb3, jb4, jb5, jb6, jb7, jb8, jb9, jb0, jbClear, jbAdd, jbSubstract, jbMultiply, jbDivide, jbEqual;
+    private JButton jb1, jb2, jb3, jb4, jb5, jb6, jb7, jb8, jb9, jb0, jbClear, jbAdd, jbSubstract, jbMultiply, jbDivide, jbEqual, jbSquare, jbSquareRoot;
     private JTextField jtfResult, jtfPreviousOperation;
 
     public CalculatorView() {
@@ -18,7 +18,7 @@ public class CalculatorView extends JFrame {
             e.printStackTrace();
         }
 
-        this.setTitle("MVC Implementation");
+        this.setTitle("Your Calculator :)");
 
         // Styles
         Font font = new Font("Helvetuca", Font.PLAIN, 18);
@@ -58,6 +58,8 @@ public class CalculatorView extends JFrame {
         jbMultiply = new JButton("x");
         jbDivide = new JButton("/");
         jbEqual = new JButton("=");
+        jbSquare = new JButton("x²");
+        jbSquareRoot = new JButton("√");
 
         jtfPreviousOperation = new JTextField(10);
         jtfPreviousOperation.setFont(font);
@@ -120,8 +122,15 @@ public class CalculatorView extends JFrame {
         jpMain.add(jbEqual, gridConstraints);
 
         // Operations
+        gridConstraints.gridy = 5;
+        gridConstraints.gridx = 1;
         jpMain.add(jbMultiply, gridConstraints);
+        gridConstraints.gridx = 2;
         jpMain.add(jbDivide, gridConstraints);
+        gridConstraints.gridx = 3;
+        jpMain.add(jbSquare, gridConstraints);
+        gridConstraints.gridx = 4;
+        jpMain.add(jbSquareRoot, gridConstraints);
 
         this.add(jpMain);
         this.setVisible(true);
@@ -154,5 +163,7 @@ public class CalculatorView extends JFrame {
         jbSubstract.addActionListener(listenForOperation);
         jbMultiply.addActionListener(listenForOperation);
         jbDivide.addActionListener(listenForOperation);
+        jbSquare.addActionListener(listenForOperation);
+        jbSquareRoot.addActionListener(listenForOperation);
     }
 }
