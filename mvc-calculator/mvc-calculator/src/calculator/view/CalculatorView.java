@@ -57,7 +57,7 @@ public class CalculatorView extends JFrame {
         jbClear = new JButton("C");
         jbAdd = new JButton("+");
         jbSubstract = new JButton("-");
-        jbMultiply = new JButton("x");
+        jbMultiply = new JButton("*");
         jbDivide = new JButton("/");
         jbEqual = new JButton("=");
         jbSquare = new JButton("x²");
