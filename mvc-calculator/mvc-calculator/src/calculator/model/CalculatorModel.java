@@ -79,14 +79,14 @@ public class CalculatorModel implements Subject {
 		case '+':
 			return num1 + num2;
 		case '-':
-			return num1 - num2;
+			return num2 - num1;
 		case '*':
 			return num1 * num2;
 		case '/':
 			if (num2 == 0)
 				throw new ArithmeticException("Division by zero");
 			else
-			return num1 / num2;
+			return num2 / num1;
 		default:
 			return 0;
 		}
