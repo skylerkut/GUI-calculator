@@ -54,6 +54,11 @@ public class CalculatorModel implements Subject {
 		}
 
 		while (!operators.empty()) {
+			Character currOperator = operators.peek();
+			if(currOperator == '√' || currOperator == '²') {
+				values.push(applyOperator(values.pop(), operators.pop()));
+			}
+			else
 			values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
 		}
 
@@ -62,7 +67,7 @@ public class CalculatorModel implements Subject {
 
 	// Helper Methods for evaluateExpression()
 	private static boolean isOperator(char c) {
-		return c == '+' || c == '-' || c == '*' || c == '/';
+		return c == '+' || c == '-' || c == '*' || c == '/' || c == '²' || c == '√';
 	}
 
 	private static int precedence(char operator) {
@@ -70,6 +75,8 @@ public class CalculatorModel implements Subject {
 			return 1;
 		else if (operator == '*' || operator == '/')
 			return 2;
+		else if (operator == '²' || operator == '√')
+			return 3;
 		else
 			return 0;
 	}
@@ -87,6 +94,21 @@ public class CalculatorModel implements Subject {
 				throw new ArithmeticException("Division by zero");
 			else
 			return num2 / num1;
+		case '√':
+			return Math.sqrt(num1);
+		case '²':
+			return Math.pow(num1, 2);
+		default:
+			return 0;
+		}
+	}
+	
+	private static double applyOperator(double num1, char operator) {
+		switch (operator) {
+		case '√':
+			return Math.sqrt(num1);
+		case '²':
+			return Math.pow(num1, 2);
 		default:
 			return 0;
 		}

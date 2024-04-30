@@ -55,8 +55,10 @@ public class CalculatorController implements Observer {
                		break;
             	case "C":
             		view.setResult("");
-            		//if previous input was also a clear then clear the expression as well
+            		view.setCurrentExpressionTxt("");
             		break;
+
+ 
             	default: break;
             }
         }

@@ -60,7 +60,7 @@ public class CalculatorView extends JFrame {
         jbMultiply = new JButton("*");
         jbDivide = new JButton("/");
         jbEqual = new JButton("=");
-        jbSquare = new JButton("x²");
+        jbSquare = new JButton("²");
         jbSquareRoot = new JButton("√");
         
         // Memory functions

@@ -25,7 +25,11 @@ public class CalculatorTest {
     }
 
     /*
-     * Basic Operators
+     * Model Functionality
+     */
+    
+    /*
+     * Basic Operations
      */
     @Test
     public void testAdd() {
@@ -58,6 +62,28 @@ public class CalculatorTest {
     	result = model.evaluateExpression();
     	assertEquals(5, result, 0.0f);
     }
+    
+    @Test
+    public void testSqrt() {
+    	model.setExpression("144√=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(12, result, 0.0f);
+    }
+    
+    @Test
+    public void testSquare() {
+    	model.setExpression("8²=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(64, result, 0.0f);
+    }
+    
+    /*
+     * Memory Functions
+     */
+    
+    
 }
 
 
