@@ -205,6 +205,7 @@ public class CalculatorView extends JFrame {
         jbDivide.addActionListener(listenForCalc);
         jbSquare.addActionListener(listenForCalc);
         jbSquareRoot.addActionListener(listenForCalc);
+        jbDecimal.addActionListener(listenForCalc);
     }
 
     public void addOperationListener (ActionListener listenForOperation) {

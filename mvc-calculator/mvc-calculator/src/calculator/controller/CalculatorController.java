@@ -54,17 +54,21 @@ public class CalculatorController implements Observer {
 				model.setExpression("");
 				break;
 			case "M+":
+				String isOutput = view.getCurrentExpressionTxt();
+				if(!isOutput.contains("=")) {
+					view.setResult("Invalid");
+				}
 				String mem = view.getResult();
 				if (!mem.contains("+") && !mem.contains("-") && !mem.contains("*") && !mem.contains("/")
 						&& !mem.contains("²") && !mem.contains("√")) {
 					try {
 						double number = Double.parseDouble(mem);
 						if (number < 0)
-							view.setResult("Memory variable cannot be negative");
+							view.setResult("Invalid");
 						else
 							model.addMemory(number);
 					} catch (NumberFormatException e1) {
-						view.setResult("Invalid variable for memory");
+						view.setResult("Invalid");
 					}
 				}
 				break;
@@ -75,11 +79,11 @@ public class CalculatorController implements Observer {
 					try {
 						double number = Double.parseDouble(memSub);
 						if (number < 0)
-							view.setResult("Memory variable cannot be negative");
+							view.setResult("Invalid");
 						else
 							model.subMemory(number);
 					} catch (NumberFormatException e1) {
-						view.setResult("Invalid variable for memory");
+						view.setResult("Invalid");
 					}
 				}
 			case "MR":

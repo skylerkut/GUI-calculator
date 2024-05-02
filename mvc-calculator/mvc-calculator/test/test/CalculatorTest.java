@@ -133,7 +133,14 @@ public class CalculatorTest {
     /*
      * Memory Functions
      */
-    
+    @Test
+    public void testMemAdd() {
+    	//Perform initial operation
+    	model.setExpression("8²=");
+    	double result = model.evaluateExpression();
+
+    	
+    }
     
 }
 
