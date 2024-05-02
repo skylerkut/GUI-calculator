@@ -63,8 +63,14 @@ public class CalculatorModel implements Subject {
 			else
             values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
         }
+        
+        // Final check for parenthesis multiplcation cases 
+        double result = values.pop();
+        while (!values.empty()) {
+            result *= values.pop();
+        }
 
-        return values.pop();
+        return result;
     }
 
 

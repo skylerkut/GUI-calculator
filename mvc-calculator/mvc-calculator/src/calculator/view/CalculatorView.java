@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class CalculatorView extends JFrame {
     private JButton jb1, jb2, jb3, jb4, jb5, jb6, jb7, jb8, jb9, jb0, jbClear, jbAdd, jbSubstract, jbMultiply, jbDivide, jbEqual, jbSquare,
-    jbSquareRoot, jbMemoryAdd, jbMemorySubtract, jbMemoryRecall, jbMemoryClear, jbDelete, jbDecimal;
+    jbSquareRoot, jbMemoryAdd, jbMemorySubtract, jbMemoryRecall, jbMemoryClear, jbDelete, jbDecimal, jbParenthLeft, jbParenthRight;
     private JTextField jtfResult, jftCurrentExpressionTxt;
 
     public CalculatorView() {
@@ -73,6 +73,9 @@ public class CalculatorView extends JFrame {
         jbDelete = new JButton("Del");
         //Decimal
         jbDecimal = new JButton(".");
+        //Parenthesis
+        jbParenthLeft = new JButton("(");
+        jbParenthRight = new JButton(")");
 
         jftCurrentExpressionTxt = new JTextField(10);
         jftCurrentExpressionTxt.setFont(font);
@@ -110,6 +113,17 @@ public class CalculatorView extends JFrame {
         gridConstraints.gridwidth = 1;
         gridConstraints.gridx = 1;
         gridConstraints.gridy = 2;
+        jpMain.add(jbDecimal, gridConstraints);
+        gridConstraints.gridx = 2;
+        jpMain.add(jbDelete, gridConstraints);
+        gridConstraints.gridx = 3;
+        jpMain.add(jbClear, gridConstraints);
+        gridConstraints.gridx = 4;
+        jpMain.add(jbEqual, gridConstraints);
+
+        // Third row
+        gridConstraints.gridx = 1;
+        gridConstraints.gridy = 3;
         jpMain.add(jb1, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jb2, gridConstraints);
@@ -117,10 +131,10 @@ public class CalculatorView extends JFrame {
         jpMain.add(jb3, gridConstraints);
         gridConstraints.gridx = 4;
         jpMain.add(jbAdd, gridConstraints);
-
+        
         // Third row
         gridConstraints.gridx = 1;
-        gridConstraints.gridy = 3;
+        gridConstraints.gridy = 4;
         jpMain.add(jb4, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jb5, gridConstraints);
@@ -131,7 +145,7 @@ public class CalculatorView extends JFrame {
 
         // Fourth row
         gridConstraints.gridx = 1;
-        gridConstraints.gridy = 4;
+        gridConstraints.gridy = 5;
         jpMain.add(jb7, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jb8, gridConstraints);
@@ -142,25 +156,25 @@ public class CalculatorView extends JFrame {
         
         //  Fifth row
         gridConstraints.gridx = 1;
-        gridConstraints.gridy = 5;
-        jpMain.add(jbDelete, gridConstraints);
+        gridConstraints.gridy = 6;
+
         gridConstraints.gridx = 2;
         jpMain.add(jb0, gridConstraints);
         gridConstraints.gridx = 3;
-        jpMain.add(jbClear, gridConstraints);
+
         gridConstraints.gridx = 4;
         jpMain.add(jbDivide, gridConstraints);
         
         // Operations
-        gridConstraints.gridy = 6;
+        gridConstraints.gridy = 7;
         gridConstraints.gridx = 1;
-        jpMain.add(jbDecimal, gridConstraints);
+        jpMain.add(jbParenthLeft, gridConstraints);
         gridConstraints.gridx = 2;
-        jpMain.add(jbSquare, gridConstraints);
+        jpMain.add(jbParenthRight, gridConstraints);
         gridConstraints.gridx = 3;
         jpMain.add(jbSquareRoot, gridConstraints);
         gridConstraints.gridx = 4;
-        jpMain.add(jbEqual, gridConstraints);
+        jpMain.add(jbSquare, gridConstraints);
 
         this.add(jpMain);
         this.setVisible(true);
@@ -206,6 +220,8 @@ public class CalculatorView extends JFrame {
         jbSquare.addActionListener(listenForCalc);
         jbSquareRoot.addActionListener(listenForCalc);
         jbDecimal.addActionListener(listenForCalc);
+        jbParenthRight.addActionListener(listenForCalc);
+        jbParenthLeft.addActionListener(listenForCalc);
     }
 
     public void addOperationListener (ActionListener listenForOperation) {

@@ -73,6 +73,10 @@ public class CalculatorController implements Observer {
 				}
 				break;
 			case "M-":
+				isOutput = view.getCurrentExpressionTxt();
+				if(!isOutput.contains("=")) {
+					view.setResult("Invalid");
+				}
 				String memSub = view.getResult();
 				if (!memSub.contains("+") && !memSub.contains("-") && !memSub.contains("*") && !memSub.contains("/")
 						&& !memSub.contains("²") && !memSub.contains("√")) {
