@@ -91,21 +91,34 @@ public class CalculatorView extends JFrame {
         gridConstraints.gridwidth = 5;
         jpMain.add(jpResults, gridConstraints);
 
-        // First row
+        
+        // Memory functions/ First row
         gridConstraints.gridwidth = 1;
         gridConstraints.gridx = 1;
         gridConstraints.gridy = 1;
+        jpMain.add(jbMemoryAdd, gridConstraints);
+        gridConstraints.gridx = 2;
+        jpMain.add(jbMemorySubtract, gridConstraints);
+        gridConstraints.gridx = 3;
+        jpMain.add(jbMemoryRecall, gridConstraints);
+        gridConstraints.gridx = 4;
+        jpMain.add(jbMemoryClear, gridConstraints);
+        
+        // Second row
+        gridConstraints.gridwidth = 1;
+        gridConstraints.gridx = 1;
+        gridConstraints.gridy = 2;
         jpMain.add(jb1, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jb2, gridConstraints);
         gridConstraints.gridx = 3;
         jpMain.add(jb3, gridConstraints);
         gridConstraints.gridx = 4;
-        jpMain.add(jbClear, gridConstraints);
+        jpMain.add(jbAdd, gridConstraints);
 
-        // Second row
+        // Third row
         gridConstraints.gridx = 1;
-        gridConstraints.gridy = 2;
+        gridConstraints.gridy = 3;
         jpMain.add(jb4, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jb5, gridConstraints);
@@ -114,50 +127,34 @@ public class CalculatorView extends JFrame {
         gridConstraints.gridx = 4;
         jpMain.add(jbSubstract, gridConstraints);
 
-        // Third row
-        gridConstraints.gridy = 3;
+        // Fourth row
         gridConstraints.gridx = 1;
+        gridConstraints.gridy = 4;
         jpMain.add(jb7, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jb8, gridConstraints);
         gridConstraints.gridx = 3;
         jpMain.add(jb9, gridConstraints);
         gridConstraints.gridx = 4;
-        jpMain.add(jbAdd, gridConstraints);
-
-        // Fourth row
-        gridConstraints.gridx = 2;
-        gridConstraints.gridy = 4;
-        jpMain.add(jb0, gridConstraints);
-        gridConstraints.gridx = 4;
-        jpMain.add(jbEqual, gridConstraints);
-
-        // Operations
-        gridConstraints.gridy = 5;
-        gridConstraints.gridx = 1;
         jpMain.add(jbMultiply, gridConstraints);
-        gridConstraints.gridx = 2;
-        jpMain.add(jbDivide, gridConstraints);
-        gridConstraints.gridx = 3;
-        jpMain.add(jbSquare, gridConstraints);
-        gridConstraints.gridx = 4;
-        jpMain.add(jbSquareRoot, gridConstraints);
         
-        // Memory functions
+        //  Fifth row
         gridConstraints.gridx = 1;
-        gridConstraints.gridy = 6;
-        jpMain.add(jbMemoryAdd, gridConstraints);
-        gridConstraints.gridx = 2;
-        jpMain.add(jbMemorySubtract, gridConstraints);
-        gridConstraints.gridx = 3;
-        jpMain.add(jbMemoryRecall, gridConstraints);
-        gridConstraints.gridx = 4;
-        jpMain.add(jbMemoryClear, gridConstraints);
-
-        // Delete button
-        gridConstraints.gridx = 3;
-        gridConstraints.gridy = 7;
+        gridConstraints.gridy = 5;
         jpMain.add(jbDelete, gridConstraints);
+        gridConstraints.gridx = 2;
+        jpMain.add(jb0, gridConstraints);
+        gridConstraints.gridx = 3;
+        jpMain.add(jbClear, gridConstraints);
+        gridConstraints.gridx = 4;
+        jpMain.add(jbDivide, gridConstraints);
+        
+        // Operations
+        gridConstraints.gridy = 6;
+        gridConstraints.gridx = 2;
+        jpMain.add(jbSquare, gridConstraints);
+        gridConstraints.gridx = 3;
+        jpMain.add(jbSquareRoot, gridConstraints);
 
         this.add(jpMain);
         this.setVisible(true);
