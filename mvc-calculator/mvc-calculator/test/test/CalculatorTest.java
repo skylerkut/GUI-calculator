@@ -29,6 +29,57 @@ public class CalculatorTest {
      */
     
     /*
+     * Basic Operations Doubles
+     */
+    @Test
+    public void testAdd2() {
+    	model.setExpression("1.1+1.3=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(2.4, result, 0.01f);
+    }
+    
+    @Test
+    public void testSubtract2() {
+    	model.setExpression("5.6-4.9=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(0.7, result, 0.01f);
+    }
+
+    @Test
+    public void testMultiply2() {
+    	model.setExpression("1.4*3.7=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(5.18, result, 0.01f);
+    }
+    
+    @Test
+    public void testDivide2() {
+    	model.setExpression("10.8/2.2=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(4.9, result, 0.01f);
+    }
+    
+    @Test
+    public void testSqrt2() {
+    	model.setExpression("144.77√=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(12.032, result, 0.01f);
+    }
+    
+    @Test
+    public void testSquare2() {
+    	model.setExpression("8.65²=");
+    	double result = 0;
+    	result = model.evaluateExpression();
+    	assertEquals(74.8225, result, 0.01f);
+    }
+    
+    /*
      * Basic Operations
      */
     @Test

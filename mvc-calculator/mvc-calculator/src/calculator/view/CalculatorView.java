@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class CalculatorView extends JFrame {
     private JButton jb1, jb2, jb3, jb4, jb5, jb6, jb7, jb8, jb9, jb0, jbClear, jbAdd, jbSubstract, jbMultiply, jbDivide, jbEqual, jbSquare,
-    jbSquareRoot, jbMemoryAdd, jbMemorySubtract, jbMemoryRecall, jbMemoryClear, jbDelete;
+    jbSquareRoot, jbMemoryAdd, jbMemorySubtract, jbMemoryRecall, jbMemoryClear, jbDelete, jbDecimal;
     private JTextField jtfResult, jftCurrentExpressionTxt;
 
     public CalculatorView() {
@@ -71,6 +71,8 @@ public class CalculatorView extends JFrame {
 
         // Delete
         jbDelete = new JButton("Del");
+        //Decimal
+        jbDecimal = new JButton(".");
 
         jftCurrentExpressionTxt = new JTextField(10);
         jftCurrentExpressionTxt.setFont(font);
@@ -151,6 +153,8 @@ public class CalculatorView extends JFrame {
         
         // Operations
         gridConstraints.gridy = 6;
+        gridConstraints.gridx = 1;
+        jpMain.add(jbDecimal, gridConstraints);
         gridConstraints.gridx = 2;
         jpMain.add(jbSquare, gridConstraints);
         gridConstraints.gridx = 3;

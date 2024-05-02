@@ -27,7 +27,6 @@ public class CalculatorController implements Observer {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String numberUserPressed = ((JButton) e.getSource()).getText();
-
 			// Add user input to string
 			model.addToExpression(numberUserPressed);
 			// Display button pressed
@@ -46,19 +45,15 @@ public class CalculatorController implements Observer {
             	case "=":
             		double resultNum = model.evaluateExpression();
             		String result = "" + resultNum;
-               
             		//Move current expression up to previous expressions display
             		view.setCurrentExpressionTxt(model.getExpression() + "= ");
             		//Display equation result
             		view.setResult(result);  
-            		//TODO: handle if previous input was an equal or another operation
                		break;
             	case "C":
             		view.setResult("");
             		view.setCurrentExpressionTxt("");
             		break;
-
- 
             	default: break;
             }
         }

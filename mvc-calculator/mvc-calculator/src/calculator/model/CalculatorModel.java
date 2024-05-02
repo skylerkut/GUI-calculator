@@ -25,45 +25,54 @@ public class CalculatorModel implements Subject {
 	}
 
 	public static double evaluateExpression() {
-		Stack<Double> values = new Stack<>();
-		Stack<Character> operators = new Stack<>();
+        Stack<Double> values = new Stack<>();
+        Stack<Character> operators = new Stack<>();
 
-		for (int i = 0; i < expression.length(); i++) {
-			char c = expression.charAt(i);
+        StringBuilder currentNumber = new StringBuilder();
 
-			if (Character.isDigit(c)) {
-				StringBuilder sb = new StringBuilder();
-				sb.append(c);
-				while (i + 1 < expression.length() && Character.isDigit(expression.charAt(i + 1))) {
-					sb.append(expression.charAt(++i));
-				}
-				values.push(Double.parseDouble(sb.toString()));
-			} else if (c == '(') {
-				operators.push(c);
-			} else if (c == ')') {
-				while (operators.peek() != '(') {
-					values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
-				}
-				operators.pop(); // Discard the '('
-			} else if (isOperator(c)) {
-				while (!operators.empty() && precedence(operators.peek()) >= precedence(c)) {
-					values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
-				}
-				operators.push(c);
-			}
-		}
+        for (int i = 0; i < expression.length(); i++) {
+            char c = expression.charAt(i);
 
-		while (!operators.empty()) {
-			Character currOperator = operators.peek();
+            if (Character.isDigit(c) || c == '.') {
+                currentNumber.append(c);
+            } else {
+                if (currentNumber.length() > 0) {
+                    values.push(Double.parseDouble(currentNumber.toString()));
+                    currentNumber = new StringBuilder();
+                }
+
+                if (c == '(') {
+                    operators.push(c);
+                } else if (c == ')') {
+                    while (operators.peek() != '(') {
+                        values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
+                    }
+                    operators.pop(); // Discard the '('
+                } else if (isOperator(c)) {
+                    while (!operators.empty() && precedence(operators.peek()) >= precedence(c)) {
+                        values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
+                    }
+                    operators.push(c);
+                }
+            }
+        }
+
+        if (currentNumber.length() > 0) {
+            values.push(Double.parseDouble(currentNumber.toString()));
+        }
+
+        while (!operators.empty()) {
+        	Character currOperator = operators.peek();
 			if(currOperator == '√' || currOperator == '²') {
 				values.push(applyOperator(values.pop(), operators.pop()));
 			}
 			else
-			values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
-		}
+            values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
+        }
 
-		return values.pop();
-	}
+        return values.pop();
+    }
+
 
 	// Helper Methods for evaluateExpression()
 	private static boolean isOperator(char c) {
