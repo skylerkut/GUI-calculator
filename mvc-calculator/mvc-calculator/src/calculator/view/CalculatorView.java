@@ -159,6 +159,8 @@ public class CalculatorView extends JFrame {
         jpMain.add(jbSquare, gridConstraints);
         gridConstraints.gridx = 3;
         jpMain.add(jbSquareRoot, gridConstraints);
+        gridConstraints.gridx = 4;
+        jpMain.add(jbEqual, gridConstraints);
 
         this.add(jpMain);
         this.setVisible(true);

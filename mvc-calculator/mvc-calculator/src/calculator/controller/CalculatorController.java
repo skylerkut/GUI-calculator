@@ -34,29 +34,65 @@ public class CalculatorController implements Observer {
 		}
 	}
 
-	// Change to equals listener to end the string?
 	private class EqualsListener implements ActionListener {
 		@Override
-        public void actionPerformed(ActionEvent e) {
-            String operationPressed = ((JButton)e.getSource()).getText();
+		public void actionPerformed(ActionEvent e) {
+			String operationPressed = ((JButton) e.getSource()).getText();
 
-            //
-            switch(operationPressed) {
-            	case "=":
-            		double resultNum = model.evaluateExpression();
-            		String result = "" + resultNum;
-            		//Move current expression up to previous expressions display
-            		view.setCurrentExpressionTxt(model.getExpression() + "= ");
-            		//Display equation result
-            		view.setResult(result);  
-               		break;
-            	case "C":
-            		view.setResult("");
-            		view.setCurrentExpressionTxt("");
-            		break;
-            	default: break;
-            }
-        }
+			switch (operationPressed) {
+			case "=":
+				double resultNum = model.evaluateExpression();
+				String result = "" + resultNum;
+				// Move current expression up to previous expressions display
+				view.setCurrentExpressionTxt(model.getExpression() + "= ");
+				// Display equation result
+				view.setResult(result);
+				break;
+			case "C":
+				view.setResult("");
+				view.setCurrentExpressionTxt("");
+				model.setExpression("");
+				break;
+			case "M+":
+				String mem = view.getResult();
+				if (!mem.contains("+") && !mem.contains("-") && !mem.contains("*") && !mem.contains("/")
+						&& !mem.contains("²") && !mem.contains("√")) {
+					try {
+						double number = Double.parseDouble(mem);
+						if (number < 0)
+							view.setResult("Memory variable cannot be negative");
+						else
+							model.addMemory(number);
+					} catch (NumberFormatException e1) {
+						view.setResult("Invalid variable for memory");
+					}
+				}
+				break;
+			case "M-":
+				String memSub = view.getResult();
+				if (!memSub.contains("+") && !memSub.contains("-") && !memSub.contains("*") && !memSub.contains("/")
+						&& !memSub.contains("²") && !memSub.contains("√")) {
+					try {
+						double number = Double.parseDouble(memSub);
+						if (number < 0)
+							view.setResult("Memory variable cannot be negative");
+						else
+							model.subMemory(number);
+					} catch (NumberFormatException e1) {
+						view.setResult("Invalid variable for memory");
+					}
+				}
+			case "MR":
+				Double memRecall = model.recallMemory();
+				String currInputs = view.getResult();
+				view.setResult("" + currInputs + memRecall);
+				break;
+			case "MC": 
+				model.clearMemory();
+			default:
+				break;
+			}
+		}
 	}
 
 	@Override

@@ -9,17 +9,11 @@ import calculator.observer.Subject;
 public class CalculatorModel implements Subject {
 	private ArrayList<Observer> observers;
 
-	private double number;
-	private double previousNumber;
-	private String currentTypeOfOperation;
 	private double memory;
 	private static String expression;
 
 	public CalculatorModel() {
 		observers = new ArrayList<>();
-		number = 0;
-		previousNumber = 0;
-		currentTypeOfOperation = "";
 		memory = 0;
 		expression = "";
 	}
@@ -135,39 +129,15 @@ public class CalculatorModel implements Subject {
 	}
 
 	public void setExpression(String expression) {
-		this.expression = expression;
-	}
-
-	public double getNumber() {
-		return number;
-	}
-
-	public void setNumber(double number) {
-		this.number = number;
+		CalculatorModel.expression = expression;
 		notifyObservers();
 	}
 
-	public String getCurrentTypeOfOperation() {
-		return currentTypeOfOperation;
-	}
-
-	public void setCurrentTypeOfOperation(String currentTypeOfOperation) {
-		this.currentTypeOfOperation = currentTypeOfOperation;
-	}
-
-	public double getPreviousNumber() {
-		return previousNumber;
-	}
-
-	public void setPreviousNumber(double previousNumber) {
-		this.previousNumber = previousNumber;
-	}
-
-	public void addToMemory(double value) {
+	public void addMemory(double value) {
 		memory += value;
 	}
 
-	public void subtractFromMemory(double value) {
+	public void subMemory(double value) {
 		memory -= value;
 	}
 
@@ -179,6 +149,9 @@ public class CalculatorModel implements Subject {
 		memory = 0;
 	}
 
+	/*
+	 * Observer API functions
+	 */
 	@Override
 	public void registerObserver(Observer o) {
 		observers.add(o);
