@@ -19,64 +19,67 @@ public class CalculatorModel implements Subject {
 	}
 
 	public static double evaluateExpression() {
-        Stack<Double> values = new Stack<>();
-        Stack<Character> operators = new Stack<>();
+		Stack<Double> values = new Stack<>();
+		Stack<Character> operators = new Stack<>();
+		char op = ' ';
+		StringBuilder currentNumber = new StringBuilder();
 
-        StringBuilder currentNumber = new StringBuilder();
+		for (int i = 0; i < expression.length(); i++) {
+			char c = expression.charAt(i);
 
-        for (int i = 0; i < expression.length(); i++) {
-            char c = expression.charAt(i);
+			if (Character.isDigit(c) || c == '.') {
+				currentNumber.append(c);
+			} else {
+				if (currentNumber.length() > 0) {
+					values.push(Double.parseDouble(currentNumber.toString()));
+					currentNumber = new StringBuilder();
+				}
 
-            if (Character.isDigit(c) || c == '.') {
-                currentNumber.append(c);
-            } else {
-                if (currentNumber.length() > 0) {
-                    values.push(Double.parseDouble(currentNumber.toString()));
-                    currentNumber = new StringBuilder();
-                }
-
-                if (c == '(') {
-                    operators.push(c);
-                } else if (c == ')') {
-                    while (operators.peek() != '(') {
-                        values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
-                    }
-                    operators.pop(); // Discard the '('
-                } else if (isOperator(c)) {
-                    while (!operators.empty() && precedence(operators.peek()) >= precedence(c)) {
-                        values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
-                    }
-                    operators.push(c);
-                }
-            }
-        }
-
-        if (currentNumber.length() > 0) {
-            values.push(Double.parseDouble(currentNumber.toString()));
-        }
-
-        while (!operators.empty()) {
-        	Character currOperator = operators.peek();
-			if(currOperator == '√' || currOperator == '²') {
-				values.push(applyOperator(values.pop(), operators.pop()));
+				if (c == '(') {
+					operators.push(c);
+				} else if (c == ')') {
+					while (operators.peek() != '(') {
+						 op = operators.pop();
+						if (op == '√' || op == '²') {
+							values.push(applyOperator(values.pop(), op));
+						} else {
+							values.push(applyOperator(values.pop(), values.pop(), op));
+						}
+					}
+					operators.pop(); // Discard the '('
+				} else if (isOperator(c)) {
+					while (!operators.empty() && precedence(operators.peek()) >= precedence(c)) {
+						 op = operators.pop();
+	                    if (op == '√' || op == '²') {
+	                        values.push(applyOperator(values.pop(), op));
+	                    } else {
+	                        values.push(applyOperator(values.pop(), values.pop(), op));
+	                    }
+					}
+					operators.push(c);
+				}
 			}
-			else
-            values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
-        }
-        
-        // Final check for parenthesis multiplcation cases 
-        double result = values.pop();
-        while (!values.empty()) {
-            result *= values.pop();
-        }
+		}
 
-        return result;
-    }
+		if (currentNumber.length() > 0) {
+			values.push(Double.parseDouble(currentNumber.toString()));
+		}
 
+		while (!operators.empty()) {
+			Character currOperator = operators.peek();
+			if (currOperator == '√' || currOperator == '²') {
+				values.push(applyOperator(values.pop(), operators.pop()));
+			} else
+				values.push(applyOperator(values.pop(), values.pop(), operators.pop()));
+		}
+
+		return values.pop();
+	}
 
 	// Helper Methods for evaluateExpression()
 	private static boolean isOperator(char c) {
-		return c == '+' || c == '-' || c == '*' || c == '/' || c == '²' || c == '√';
+		return c == '+' || c == '-' || c == '*' || c == '/' || c == '²' || c == '√' || c == '(' || c == ')';
+
 	}
 
 	private static int precedence(char operator) {
@@ -102,16 +105,12 @@ public class CalculatorModel implements Subject {
 			if (num2 == 0)
 				throw new ArithmeticException("Division by zero");
 			else
-			return num2 / num1;
-		case '√':
-			return Math.sqrt(num1);
-		case '²':
-			return Math.pow(num1, 2);
+				return num1 / num2;
 		default:
 			return 0;
 		}
 	}
-	
+
 	private static double applyOperator(double num1, char operator) {
 		switch (operator) {
 		case '√':
