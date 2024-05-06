@@ -29,9 +29,6 @@ public class CalculatorTest {
 	 * Model Functionality
 	 */
 
-	/*
-	 * Basic Operations Doubles
-	 */
 	// Test addition operation with double numbers.
 	@Test
 	public void testAdd2() {
@@ -192,15 +189,4 @@ public class CalculatorTest {
 		assertEquals(5.0, model.evaluateExpression(), 0.001);
 	}
 
-	/*
-	 * Memory Functions
-	 */
-
-	@Test
-	public void testMemAdd() {
-		// Perform initial operation
-		model.setExpression("8²=");
-		double result = model.evaluateExpression();
-
-	}
 }
